@@ -1,6 +1,6 @@
 Name:           btrfs-progs
-Version:        0.15
-Release:        4%{?dist}
+Version:        0.16
+Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -41,6 +41,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfs-vol
 
 %changelog
+* Sat Jan 10 2008 Marek Mahut <mmahut@fedoraproject.org> 0.16-1
+- Upstream release 0.16
+
 * Mon Jun 25 2008 Josef Bacik <josef@toxicpanda.com> 0.15-4
 -use fedoras normal CFLAGS
 

@@ -1,5 +1,5 @@
 Name:           btrfs-progs
-Version:        0.16
+Version:        0.16.git1
 Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
@@ -9,7 +9,7 @@ URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  e2fsprogs-devel
+BuildRequires:  e2fsprogs-devel, zlib-devel
 
 %define _root_sbindir /sbin
 
@@ -36,11 +36,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfsctl
 %{_root_sbindir}/btrfsck
 %{_root_sbindir}/mkfs.btrfs
-%{_root_sbindir}/debug-tree
+%{_root_sbindir}/btrfs-debug-tree
+%{_root_sbindir}/btrfs-image
 %{_root_sbindir}/btrfs-show
 %{_root_sbindir}/btrfs-vol
+%{_root_sbindir}/btrfstune
 
 %changelog
+* Sat Jan 10 2009 Kyle McMartin <kyle@redhat.com> 0.16.git1-1
+- Upstream git sync from -g72359e8 (needed for kernel...)
+
 * Sat Jan 10 2009 Marek Mahut <mmahut@fedoraproject.org> 0.16-1
 - Upstream release 0.16
 

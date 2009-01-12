@@ -1,5 +1,5 @@
 Name:           btrfs-progs
-Version:        0.16.git1
+Version:        0.17
 Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
@@ -43,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Mon Jan 12 2009 Josef Bacik <josef@toxicpanda.com> 0.17
+- Upstream release 0.17
+
 * Sat Jan 10 2009 Kyle McMartin <kyle@redhat.com> 0.16.git1-1
 - Upstream git sync from -g72359e8 (needed for kernel...)
 

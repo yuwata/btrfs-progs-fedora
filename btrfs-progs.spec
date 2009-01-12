@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.17
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -43,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Mon Jan 12 2009 Josef Bacik <josef@toxicpanda.com> 0.17-2
+- fixed wrong sources upload
+
 * Mon Jan 12 2009 Josef Bacik <josef@toxicpanda.com> 0.17
 - Upstream release 0.17
 

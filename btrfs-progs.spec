@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.17
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -9,7 +9,7 @@ URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  e2fsprogs-devel, zlib-devel
+BuildRequires:  e2fsprogs-devel, zlib-devel, libacl-devel
 
 %define _root_sbindir /sbin
 
@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
-* Fri Jan 16 2009 Marek Mahut <mmahut@fedoraproject.org> 0.17-3
+* Fri Jan 16 2009 Marek Mahut <mmahut@fedoraproject.org> 0.17-4
 - RHBZ#480219 btrfs-convert is missing
 
 * Mon Jan 12 2009 Josef Bacik <josef@toxicpanda.com> 0.17-2

@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.17
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -22,6 +22,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
+make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} convert
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -40,9 +41,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfs-image
 %{_root_sbindir}/btrfs-show
 %{_root_sbindir}/btrfs-vol
+%{_root_sbindir}/btrfs-convert
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Fri Jan 16 2009 Marek Mahut <mmahut@fedoraproject.org> 0.17-3
+- RHBZ#480219 btrfs-convert is missing
+
 * Mon Jan 12 2009 Josef Bacik <josef@toxicpanda.com> 0.17-2
 - fixed wrong sources upload
 

@@ -1,6 +1,6 @@
 Name:           btrfs-progs
-Version:        0.17
-Release:        4%{?dist}
+Version:        0.18
+Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -45,6 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Sat Jan 17 2009 Josef Bacik <josef@toxicpanda.com> 0.18-1
+- updated to 0.18 because of the ioctl change in 2.6.29-rc2
+
 * Fri Jan 16 2009 Marek Mahut <mmahut@fedoraproject.org> 0.17-4
 - RHBZ#480219 btrfs-convert is missing
 

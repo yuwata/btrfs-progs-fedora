@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.18
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -47,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Thu Jan 22 2009 Josef Bacik <josef@toxicpanda.com> 0.18-3
+- updated label patch
+
 * Thu Jan 22 2009 Josef Bacik <josef@toxicpanda.com> 0.18-2
 - add a patch to handle having /'s in labels
 

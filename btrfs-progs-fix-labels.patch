@@ -1,0 +1,17 @@
+diff --git a/mkfs.c b/mkfs.c
+index d664254..5ed44cc 100644
+--- a/mkfs.c
++++ b/mkfs.c
+@@ -302,12 +302,6 @@ static char *parse_label(char *input)
+ 			BTRFS_LABEL_SIZE);
+ 		exit(1);
+ 	}
+-	for (i = 0; i < len; i++) {
+-		if (input[i] == '/' || input[i] == '\\') {
+-			fprintf(stderr, "invalid label %s\n", input);
+-			exit(1);
+-		}
+-	}
+ 	return strdup(input);
+ }
+ 

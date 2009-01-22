@@ -1,12 +1,13 @@
 Name:           btrfs-progs
 Version:        0.18
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
 License:        GPLv2
 URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
+Patch0: btrfs-progs-fix-labels.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  e2fsprogs-devel, zlib-devel, libacl-devel
@@ -19,6 +20,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -45,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Thu Jan 22 2009 Josef Bacik <josef@toxicpanda.com> 0.18-2
+- add a patch to handle having /'s in labels
+
 * Sat Jan 17 2009 Josef Bacik <josef@toxicpanda.com> 0.18-1
 - updated to 0.18 because of the ioctl change in 2.6.29-rc2
 

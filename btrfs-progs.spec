@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -30,7 +30,7 @@ make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} convert
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make bindir=%{_root_sbindir} install DESTDIR=$RPM_BUILD_ROOT
+make mandir=%{_mandir} bindir=%{_root_sbindir} install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -47,8 +47,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfs-vol
 %{_root_sbindir}/btrfs-convert
 %{_root_sbindir}/btrfstune
+%{_mandir}/man8/btrfs-image.8.gz
+%{_mandir}/man8/btrfs-show.8.gz
+%{_mandir}/man8/btrfsck.8.gz
+%{_mandir}/man8/btrfsctl.8.gz
+%{_mandir}/man8/mkfs.btrfs.8.gz
 
 %changelog
+* Fri Jun 19 2009 Josef Bacik <josef@toxicpanda.com> 0.19-3
+- added man pages to the files list and made sure they were installed properly
+
 * Fri Jun 19 2009 Josef Bacik <josef@toxicpanda.com> 0.19-2
 - add a patch for the Makefile to make it build everything again
 

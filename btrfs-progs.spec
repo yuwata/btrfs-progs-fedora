@@ -1,6 +1,6 @@
 Name:           btrfs-progs
-Version:        0.18
-Release:        4%{?dist}
+Version:        0.19
+Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -47,6 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfstune
 
 %changelog
+* Fri Jun 19 2009 Josef Bacik <josef@toxicpanda.com> 0.19-1
+- update to v0.19 of btrfs-progs for new format
+
 * Mon Feb 23 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.18-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 

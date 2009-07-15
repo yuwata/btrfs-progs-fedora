@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -11,7 +11,7 @@ Patch0: btrfs-progs-fix-labels.patch
 Patch1: btrfs-progs-build-everything.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  e2fsprogs-devel, zlib-devel, libacl-devel
+BuildRequires:  libuuid-devel, zlib-devel, libacl-devel
 
 %define _root_sbindir /sbin
 
@@ -54,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/mkfs.btrfs.8.gz
 
 %changelog
+* Wed Jul 15 2009 Josef Bacik <josef@toxicpanda.com> 0.19-4
+- change BuildRequires for e2fsprogs-devel to libuuid-devel
+
 * Fri Jun 19 2009 Josef Bacik <josef@toxicpanda.com> 0.19-3
 - added man pages to the files list and made sure they were installed properly
 

@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -54,6 +54,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/mkfs.btrfs.8.gz
 
 %changelog
+* Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Wed Jul 15 2009 Josef Bacik <josef@toxicpanda.com> 0.19-5
 - add e2fsprogs-devel back to BuildRequires since its needed for the converter
 

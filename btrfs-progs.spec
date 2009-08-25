@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -9,6 +9,7 @@ URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
 Patch0: btrfs-progs-fix-labels.patch
 Patch1: btrfs-progs-build-everything.patch
+Patch2: btrfs-progs-valgrind.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel
@@ -23,6 +24,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -54,6 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/mkfs.btrfs.8.gz
 
 %changelog
+* Tue Aug 25 2009 Josef Bacik <josef@toxicpanda.com> 0.19-7
+- add btrfs-progs-valgrind.patch to fix memory leaks and segfaults
+
 * Fri Jul 24 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 

@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -26,11 +26,11 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch1 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -55,13 +55,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_root_sbindir}/btrfs-vol
 %{_root_sbindir}/btrfs-convert
 %{_root_sbindir}/btrfstune
+%{_root_sbindir}/btrfs
+%{_root_sbindir}/btrfs-map-logical
 %{_mandir}/man8/btrfs-image.8.gz
 %{_mandir}/man8/btrfs-show.8.gz
 %{_mandir}/man8/btrfsck.8.gz
 %{_mandir}/man8/btrfsctl.8.gz
 %{_mandir}/man8/mkfs.btrfs.8.gz
+%{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Wed Mar 24 2010 Josef Bacik <josef@toxicpanda.com> 0.19-11
+- bring btrfs-progs uptodate with upstream, add btrfs command and other
+  features.
+
 * Thu Mar 11 2010 Josef Bacik <josef@toxicpanda.com> 0.19-10
 - fix dso linking issue and bring btrfs-progs uptodate with upstream
 

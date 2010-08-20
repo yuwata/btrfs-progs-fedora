@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Fri Aug 20 2010 Adam Tkac <atkac redhat com> 0.19-12
+- rebuild to ensure F14 has bigger NVR than F13
+
 * Wed Mar 24 2010 Josef Bacik <josef@toxicpanda.com> 0.19-11
 - bring btrfs-progs uptodate with upstream, add btrfs command and other
   features.

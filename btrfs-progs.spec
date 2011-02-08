@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Mon Feb 07 2011 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-13
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_15_Mass_Rebuild
+
 * Fri Aug 20 2010 Adam Tkac <atkac redhat com> 0.19-12
 - rebuild to ensure F14 has bigger NVR than F13
 

@@ -33,7 +33,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} LDFLAGS="-lcom_err" convert
-make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags) btrfs-zero-log
+make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} btrfs-zero-log
 
 %install
 rm -rf $RPM_BUILD_ROOT

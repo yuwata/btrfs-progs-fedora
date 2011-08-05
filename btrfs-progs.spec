@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        15%{?dist}
+Release:        16%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -33,7 +33,6 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} LDFLAGS="-lcom_err" convert
-make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} btrfs-zero-log
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -65,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Fri Aug 05 2011 Josef Bacik <josef@toxicpanda.com> 0.19-16
+- fix build-everything patch to actually build everything
+
 * Fri Aug 05 2011 Josef Bacik <josef@toxicpanda.com> 0.19-15
 - actually build btrfs-zero-log
 

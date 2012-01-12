@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        16%{?dist}
+Release:        17%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -64,6 +64,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-17
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Fri Aug 05 2011 Josef Bacik <josef@toxicpanda.com> 0.19-16
 - fix build-everything patch to actually build everything
 

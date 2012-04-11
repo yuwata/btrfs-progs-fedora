@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        17%{?dist}
+Release:        18%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -9,9 +9,8 @@ URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
 Patch0: btrfs-progs-upstream.patch
 Patch1: btrfs-progs-fix-labels.patch
-Patch2: btrfs-progs-build-everything.patch
-Patch3: btrfs-progs-valgrind.patch
-Patch4: btrfs-progs-build-fixes.patch
+Patch2: btrfs-progs-valgrind.patch
+Patch3: btrfs-progs-build-fixes.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel
@@ -28,15 +27,13 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
-make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags} LDFLAGS="-lcom_err" convert
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make mandir=%{_mandir} bindir=%{_root_sbindir} install DESTDIR=$RPM_BUILD_ROOT
+make mandir=%{_mandir} bindir=%{_sbindir} install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -44,18 +41,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc COPYING INSTALL
-%{_root_sbindir}/btrfsctl
-%{_root_sbindir}/btrfsck
-%{_root_sbindir}/mkfs.btrfs
-%{_root_sbindir}/btrfs-debug-tree
-%{_root_sbindir}/btrfs-image
-%{_root_sbindir}/btrfs-show
-%{_root_sbindir}/btrfs-vol
-%{_root_sbindir}/btrfs-convert
-%{_root_sbindir}/btrfstune
-%{_root_sbindir}/btrfs
-%{_root_sbindir}/btrfs-map-logical
-%{_root_sbindir}/btrfs-zero-log
+%{_sbindir}/btrfsctl
+%{_sbindir}/btrfsck
+%{_sbindir}/mkfs.btrfs
+%{_sbindir}/btrfs-debug-tree
+%{_sbindir}/btrfs-image
+%{_sbindir}/btrfs-show
+%{_sbindir}/btrfs-vol
+%{_sbindir}/btrfs-convert
+%{_sbindir}/btrfstune
+%{_sbindir}/btrfs
+%{_sbindir}/btrfs-map-logical
+%{_sbindir}/btrfs-zero-log
+%{_sbindir}/btrfs-restore
+%{_sbindir}/btrfs-find-root
 %{_mandir}/man8/btrfs-image.8.gz
 %{_mandir}/man8/btrfs-show.8.gz
 %{_mandir}/man8/btrfsck.8.gz
@@ -64,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Wed Apr 11 2012 Josef Bacik <josef@toxicpanda.com> 0.19-18
+- updated to latest btrfs-progs
+
 * Thu Jan 12 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-17
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 

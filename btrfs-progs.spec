@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        18%{?dist}
+Release:        19%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -11,6 +11,7 @@ Patch0: btrfs-progs-upstream.patch
 Patch1: btrfs-progs-fix-labels.patch
 Patch2: btrfs-progs-valgrind.patch
 Patch3: btrfs-progs-build-fixes.patch
+Patch4: Btrfs-progs-make-btrfs-filesystem-show-uuid-actually.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel
@@ -27,6 +28,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -63,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Wed Apr 25 2012 Josef Bacik <josef@toxicpanda.com> 0.19-19
+- make btrfs filesystem show <uuid> actually work (rhbz# 816293)
+
 * Wed Apr 11 2012 Josef Bacik <josef@toxicpanda.com> 0.19-18
 - updated to latest btrfs-progs
 

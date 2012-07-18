@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.19
-Release:        19%{?dist}
+Release:        20%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -65,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-20
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Wed Apr 25 2012 Josef Bacik <josef@toxicpanda.com> 0.19-19
 - make btrfs filesystem show <uuid> actually work (rhbz# 816293)
 

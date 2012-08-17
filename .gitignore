@@ -1,1 +1,16 @@
-btrfs-progs-0.19.tar.bz2
+*.o
+.*.o.d
+version.h
+man/*.gz
+btrfs
+btrfs-debug-tree
+btrfs-map-logical
+btrfs-show
+btrfs-vol
+btrfsck
+btrfsctl
+find-root
+mkfs.btrfs
+repair
+restore
+/btrfs-progs-0.19.20120817git043a639.tar.bz2

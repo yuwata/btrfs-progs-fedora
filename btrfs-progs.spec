@@ -1,20 +1,23 @@
 Name:           btrfs-progs
-Version:        0.19
-Release:        20%{?dist}
+Version:        0.19.20120817git043a639
+Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
 License:        GPLv2
 URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
-Source0:        http://www.kernel.org/pub/linux/kernel/people/mason/btrfs/%{name}-%{version}.tar.bz2
-Patch0: btrfs-progs-upstream.patch
-Patch1: btrfs-progs-fix-labels.patch
-Patch2: btrfs-progs-valgrind.patch
-Patch3: btrfs-progs-build-fixes.patch
-Patch4: Btrfs-progs-make-btrfs-filesystem-show-uuid-actually.patch
+Source0:	%{name}-%{version}.tar.bz2
+Patch0: btrfs-progs-fix-labels.patch
+Patch1: btrfs-progs-valgrind.patch
+Patch2: btrfs-progs-build-fixes.patch
+Patch3: Btrfs-progs-add-btrfs-device-ready-command.patch
+Patch4: Btrfs-progs-detect-if-the-disk-we-are-formatting-is-.patch
+Patch5: Btrfs-progs-only-enforce-a-maximum-size-if-we-specif.patch
+Patch6: btrfs-init-dev-list.patch
+
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel
+BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel, libblkid-devel
 
 %define _root_sbindir /sbin
 
@@ -29,6 +32,8 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -65,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Fri Aug 17 2012 Josef Bacik <josef@toxicpanda.com> 0.19.20120817git043a639-1
+- update to latest btrfs-progs
+
 * Wed Jul 18 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.19-20
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 

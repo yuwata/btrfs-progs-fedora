@@ -71,6 +71,10 @@ rm -rf $RPM_BUILD_ROOT
 * Wed Oct 17 2012 Josef Bacik <josef@toxicpanda.com> 0.20.rc1.20121017git91d9eec-1
 - update to latest btrfs-progs
 
+* Wed Oct 10 2012 Richard W.M. Jones <rjones@redhat.com> 0.19.20120817git043a639-2
+- Add upstream patch to correct uninitialized fsid variable
+  (possible fix for RHBZ#863978).
+
 * Fri Aug 17 2012 Josef Bacik <josef@toxicpanda.com> 0.19.20120817git043a639-1
 - update to latest btrfs-progs
 

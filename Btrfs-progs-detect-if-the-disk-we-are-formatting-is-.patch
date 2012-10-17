@@ -1,27 +1,7 @@
-From f507119002c6bb972df09a47edfa8998c0fc8172 Mon Sep 17 00:00:00 2001
-From: Josef Bacik <jbacik@fusionio.com>
-Date: Fri, 20 Jul 2012 11:09:43 -0400
-Subject: [PATCH 2/3] Btrfs-progs: detect if the disk we are formatting is a
- ssd
-
-SSD's do not gain anything by having metadata DUP turned on.  The underlying
-file system that is a part of all SSD's could easily map duplicate metadat
-blocks into the same erase block which effectively eliminates the benefit of
-duplicating the metadata on disk.  So detect if we are formatting a single
-SSD drive and if we are do not use DUP.  Thanks,
-
-Signed-off-by: Josef Bacik <jbacik@fusionio.com>
----
- Makefile            |    2 +-
- man/mkfs.btrfs.8.in |    5 +++-
- mkfs.c              |   58 ++++++++++++++++++++++++++++++++++++++++++++++++--
- 3 files changed, 60 insertions(+), 5 deletions(-)
-
-diff --git a/Makefile b/Makefile
-index c0aaa3d..1afef49 100644
---- a/Makefile
-+++ b/Makefile
-@@ -66,7 +66,7 @@ btrfsck: $(objects) btrfsck.o
+diff -up btrfs-progs-0.20.rc1.20121017git91d9eec/Makefile.patch4 btrfs-progs-0.20.rc1.20121017git91d9eec/Makefile
+--- btrfs-progs-0.20.rc1.20121017git91d9eec/Makefile.patch4	2012-10-04 20:35:31.000000000 -0400
++++ btrfs-progs-0.20.rc1.20121017git91d9eec/Makefile	2012-10-17 13:48:02.331453645 -0400
+@@ -67,7 +67,7 @@ btrfsck: $(objects) btrfsck.o
  	$(CC) $(CFLAGS) -o btrfsck btrfsck.o $(objects) $(LDFLAGS) $(LIBS)
  
  mkfs.btrfs: $(objects) mkfs.o
@@ -30,11 +10,10 @@ index c0aaa3d..1afef49 100644
  
  btrfs-debug-tree: $(objects) debug-tree.o
  	$(CC) $(CFLAGS) -o btrfs-debug-tree $(objects) debug-tree.o $(LDFLAGS) $(LIBS)
-diff --git a/man/mkfs.btrfs.8.in b/man/mkfs.btrfs.8.in
-index fc2e1d2..dfa7996 100644
---- a/man/mkfs.btrfs.8.in
-+++ b/man/mkfs.btrfs.8.in
-@@ -46,7 +46,10 @@ Specify a label for the filesystem.
+diff -up btrfs-progs-0.20.rc1.20121017git91d9eec/man/mkfs.btrfs.8.in.patch4 btrfs-progs-0.20.rc1.20121017git91d9eec/man/mkfs.btrfs.8.in
+--- btrfs-progs-0.20.rc1.20121017git91d9eec/man/mkfs.btrfs.8.in.patch4	2012-10-04 20:35:31.000000000 -0400
++++ btrfs-progs-0.20.rc1.20121017git91d9eec/man/mkfs.btrfs.8.in	2012-10-17 13:48:02.331453645 -0400
+@@ -47,7 +47,10 @@ Specify a label for the filesystem.
  .TP
  \fB\-m\fR, \fB\-\-metadata \fIprofile\fR
  Specify how metadata must be spanned across the devices specified. Valid
@@ -46,10 +25,9 @@ index fc2e1d2..dfa7996 100644
  .TP
  \fB\-M\fR, \fB\-\-mixed\fR
  Mix data and metadata chunks together for more efficient space 
-diff --git a/mkfs.c b/mkfs.c
-index dff5eb8..8816db8 100644
---- a/mkfs.c
-+++ b/mkfs.c
+diff -up btrfs-progs-0.20.rc1.20121017git91d9eec/mkfs.c.patch4 btrfs-progs-0.20.rc1.20121017git91d9eec/mkfs.c
+--- btrfs-progs-0.20.rc1.20121017git91d9eec/mkfs.c.patch4	2012-10-17 13:48:02.329453660 -0400
++++ btrfs-progs-0.20.rc1.20121017git91d9eec/mkfs.c	2012-10-17 13:53:36.954806793 -0400
 @@ -37,6 +37,7 @@
  #include <linux/fs.h>
  #include <ctype.h>
@@ -58,7 +36,7 @@ index dff5eb8..8816db8 100644
  #include "kerncompat.h"
  #include "ctree.h"
  #include "disk-io.h"
-@@ -234,7 +235,7 @@ static int create_one_raid_group(struct btrfs_trans_handle *trans,
+@@ -234,7 +235,7 @@ static int create_one_raid_group(struct
  static int create_raid_groups(struct btrfs_trans_handle *trans,
  			      struct btrfs_root *root, u64 data_profile,
  			      int data_profile_opt, u64 metadata_profile,
@@ -67,7 +45,7 @@ index dff5eb8..8816db8 100644
  {
  	u64 num_devices = btrfs_super_num_devices(&root->fs_info->super_copy);
  	u64 allowed;
-@@ -245,8 +246,12 @@ static int create_raid_groups(struct btrfs_trans_handle *trans,
+@@ -245,8 +246,12 @@ static int create_raid_groups(struct btr
  	 * For mixed groups defaults are single/single.
  	 */
  	if (!metadata_profile_opt && !mixed) {
@@ -81,8 +59,8 @@ index dff5eb8..8816db8 100644
  	}
  	if (!data_profile_opt && !mixed) {
  		data_profile = (num_devices > 1) ?
-@@ -1201,6 +1206,49 @@ static int zero_output_file(int out_fd, u64 size, u32 sectorsize)
- 	return ret;
+@@ -1215,6 +1220,49 @@ static int check_leaf_or_node_size(u32 s
+ 	return 0;
  }
  
 +static int is_ssd(const char *file)
@@ -131,7 +109,7 @@ index dff5eb8..8816db8 100644
  int main(int ac, char **av)
  {
  	char *file;
-@@ -1227,6 +1275,7 @@ int main(int ac, char **av)
+@@ -1241,6 +1289,7 @@ int main(int ac, char **av)
  	int data_profile_opt = 0;
  	int metadata_profile_opt = 0;
  	int nodiscard = 0;
@@ -139,7 +117,7 @@ index dff5eb8..8816db8 100644
  
  	char *source_dir = NULL;
  	int source_dir_set = 0;
-@@ -1352,6 +1401,9 @@ int main(int ac, char **av)
+@@ -1360,6 +1409,9 @@ int main(int ac, char **av)
  			exit(1);
  		}
  	}
@@ -149,7 +127,7 @@ index dff5eb8..8816db8 100644
  	if (mixed) {
  		if (metadata_profile != data_profile) {
  			fprintf(stderr, "With mixed block groups data and metadata "
-@@ -1438,7 +1490,7 @@ raid_groups:
+@@ -1445,7 +1497,7 @@ raid_groups:
  	if (!source_dir_set) {
  		ret = create_raid_groups(trans, root, data_profile,
  				 data_profile_opt, metadata_profile,
@@ -158,6 +136,3 @@ index dff5eb8..8816db8 100644
  		BUG_ON(ret);
  	}
  
--- 
-1.7.7.6
-

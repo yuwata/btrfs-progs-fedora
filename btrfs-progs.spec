@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.20.rc1.20121017git91d9eec
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Thu Nov  1 2012 Josef Bacik <josef@toxicpanda.com> 0.20.rc1.20121017git91d9eec-2
+- fix a bug when mkfs'ing a file (rhbz# 871778)
+
 * Wed Oct 17 2012 Josef Bacik <josef@toxicpanda.com> 0.20.rc1.20121017git91d9eec-1
 - update to latest btrfs-progs
 

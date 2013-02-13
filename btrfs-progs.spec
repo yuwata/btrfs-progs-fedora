@@ -1,6 +1,6 @@
 Name:           btrfs-progs
 Version:        0.20.rc1.20121017git91d9eec
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
@@ -13,6 +13,10 @@ Patch2: btrfs-progs-build-fixes.patch
 Patch3: Btrfs-progs-add-btrfs-device-ready-command.patch
 Patch4: Btrfs-progs-detect-if-the-disk-we-are-formatting-is-.patch
 Patch5: btrfs-init-dev-list.patch
+# Partial fix for RHBZ#863978 (but only in Rawhide).
+# Upstream: https://git.kernel.org/?p=linux/kernel/git/mason/btrfs-progs.git;a=commitdiff;h=8fe354744cd7b5c4f7a3314dcdbb5095192a032f
+# See also: http://thread.gmane.org/gmane.comp.file-systems.btrfs/23249
+Patch6: clear-caches-when-opening-and-closing-devices.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -32,6 +36,7 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
@@ -68,6 +73,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Wed Feb 13 2013 Richard W.M. Jones <rjones@redhat.com> 0.20.rc1.20121017git91d9eec-3
+- Include upstream patch to clear caches as a partial fix for RHBZ#863978.
+
 * Thu Nov  1 2012 Josef Bacik <josef@toxicpanda.com> 0.20.rc1.20121017git91d9eec-2
 - fix a bug when mkfs'ing a file (rhbz# 871778)
 

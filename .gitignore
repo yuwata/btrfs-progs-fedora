@@ -13,5 +13,4 @@ find-root
 mkfs.btrfs
 repair
 restore
-/btrfs-progs-0.19.20120817git043a639.tar.bz2
-/btrfs-progs-0.20.rc1.20121017git91d9eec.tar.bz2
+/btrfs-progs-*.tar.bz2

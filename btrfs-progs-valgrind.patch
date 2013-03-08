@@ -1,19 +1,10 @@
+Not-upstream changes from Josef.  Some bits have made it usptream
+and have been removed; the rest needs some reverse-engineering.
+
 diff -up btrfs-progs-0.19/btrfsck.c.orig btrfs-progs-0.19/btrfsck.c
 diff -up btrfs-progs-0.19/disk-io.c.orig btrfs-progs-0.19/disk-io.c
 --- btrfs-progs-0.19/disk-io.c.orig	2012-04-11 10:42:36.213042556 -0400
 +++ btrfs-progs-0.19/disk-io.c	2012-04-11 10:42:58.790867701 -0400
-@@ -458,8 +458,10 @@ static int find_and_setup_log_root(struc
- 	u64 blocknr = btrfs_super_log_root(disk_super);
- 	struct btrfs_root *log_root = malloc(sizeof(struct btrfs_root));
- 
--	if (blocknr == 0)
-+	if (blocknr == 0) {
-+		free(log_root);
- 		return 0;
-+	}
- 
- 	blocksize = btrfs_level_size(tree_root,
- 			     btrfs_super_log_root_level(disk_super));
 @@ -622,7 +624,7 @@ static struct btrfs_fs_info *__open_ctre
  	struct btrfs_root *chunk_root = malloc(sizeof(struct btrfs_root));
  	struct btrfs_root *dev_root = malloc(sizeof(struct btrfs_root));
@@ -150,15 +141,6 @@ diff -up btrfs-progs-0.19/volumes.c.orig btrfs-progs-0.19/volumes.c
  int btrfs_num_copies(struct btrfs_mapping_tree *map_tree, u64 logical, u64 len)
  {
  	struct cache_extent *ce;
-@@ -1484,7 +1498,7 @@ int btrfs_read_sys_array(struct btrfs_ro
- 	if (!sb)
- 		return -ENOMEM;
- 	btrfs_set_buffer_uptodate(sb);
--	write_extent_buffer(sb, super_copy, 0, BTRFS_SUPER_INFO_SIZE);
-+	write_extent_buffer(sb, super_copy, 0, sizeof(*super_copy));
- 	array_size = btrfs_super_sys_array_size(super_copy);
- 
- 	/*
 diff -up btrfs-progs-0.19/volumes.h.orig btrfs-progs-0.19/volumes.h
 --- btrfs-progs-0.19/volumes.h.orig	2012-04-11 10:42:36.228042439 -0400
 +++ btrfs-progs-0.19/volumes.h	2012-04-11 10:43:03.314832666 -0400

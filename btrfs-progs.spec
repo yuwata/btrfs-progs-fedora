@@ -1,22 +1,17 @@
 Name:           btrfs-progs
-Version:        0.20.rc1.20121017git91d9eec
-Release:        3%{?dist}
+Version:        0.20.rc1.20130308git704a08c
+Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
 Group:          System Environment/Base
 License:        GPLv2
 URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:	%{name}-%{version}.tar.bz2
-Patch0: btrfs-progs-fix-labels.patch
-Patch1: btrfs-progs-valgrind.patch
-Patch2: btrfs-progs-build-fixes.patch
-Patch3: Btrfs-progs-add-btrfs-device-ready-command.patch
-Patch4: Btrfs-progs-detect-if-the-disk-we-are-formatting-is-.patch
-Patch5: btrfs-init-dev-list.patch
-# Partial fix for RHBZ#863978 (but only in Rawhide).
-# Upstream: https://git.kernel.org/?p=linux/kernel/git/mason/btrfs-progs.git;a=commitdiff;h=8fe354744cd7b5c4f7a3314dcdbb5095192a032f
-# See also: http://thread.gmane.org/gmane.comp.file-systems.btrfs/23249
-Patch6: clear-caches-when-opening-and-closing-devices.patch
+
+# Valgrind patch no longer applied, but kept for posterity
+# Still must reverse-engineer fixes in there and get upstream
+Patch0: btrfs-progs-valgrind.patch
+Patch1: btrfs-init-dev-list.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -30,16 +25,10 @@ check, modify and correct any inconsistencies in the btrfs filesystem.
 
 %prep
 %setup -q
-%patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS" %{?_smp_mflags}
+make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -63,8 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs
 %{_sbindir}/btrfs-map-logical
 %{_sbindir}/btrfs-zero-log
-%{_sbindir}/btrfs-restore
 %{_sbindir}/btrfs-find-root
+%{_sbindir}/btrfs-show-super
 %{_mandir}/man8/btrfs-image.8.gz
 %{_mandir}/man8/btrfs-show.8.gz
 %{_mandir}/man8/btrfsck.8.gz
@@ -73,6 +62,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Fri Mar 08 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130308git704a08c-1
+- New upstream snapshot
+- btrfs-restore is now a command in the btrfs utility
+
 * Wed Feb 13 2013 Richard W.M. Jones <rjones@redhat.com> 0.20.rc1.20121017git91d9eec-3
 - Include upstream patch to clear caches as a partial fix for RHBZ#863978.
 
@@ -177,7 +170,7 @@ rm -rf $RPM_BUILD_ROOT
 * Sat Jan 10 2009 Marek Mahut <mmahut@fedoraproject.org> 0.16-1
 - Upstream release 0.16
 
-* Mon Jun 25 2008 Josef Bacik <josef@toxicpanda.com> 0.15-4
+* Wed Jun 25 2008 Josef Bacik <josef@toxicpanda.com> 0.15-4
 -use fedoras normal CFLAGS
 
 * Mon Jun 23 2008 Josef Bacik <josef@toxicpanda.com> 0.15-3

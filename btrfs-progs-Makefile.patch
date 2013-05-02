@@ -1,0 +1,13 @@
+Index: btrfs-progs-0.20.rc1.20130501git7854c8b/Makefile
+===================================================================
+--- btrfs-progs-0.20.rc1.20130501git7854c8b.orig/Makefile
++++ btrfs-progs-0.20.rc1.20130501git7854c8b/Makefile
+@@ -222,6 +222,8 @@ clean :
+ install: $(libs) $(progs) install-man
+ 	$(INSTALL) -m755 -d $(DESTDIR)$(bindir)
+ 	$(INSTALL) $(progs) $(DESTDIR)$(bindir)
++	# make btrfsck a link again under $(DESTDIR)
++	$(LN) -f $(DESTDIR)$(bindir)/btrfs $(DESTDIR)$(bindir)/btrfsck
+ 	$(INSTALL) -m755 -d $(DESTDIR)$(libdir)
+ 	$(INSTALL) $(libs) $(DESTDIR)$(libdir)
+ 	cp -a $(lib_links) $(DESTDIR)$(libdir)

@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	0.20.rc1.20130501git7854c8b
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -12,6 +12,7 @@ Source0:	%{name}-%{version}.tar.bz2
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
+Patch2:		btrfs-progs-Makefile.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -25,9 +26,9 @@ The btrfs-progs package provides all the userspace programs needed to create,
 check, modify and correct any inconsistencies in the btrfs filesystem.
 
 %package devel
-Summary:	Userspace programs for btrfs
+Summary:	btrfs filesystem-specific libraries and headers
 Group:		Development/Libraries
-Requires:	btrfs-progs-%{version}
+Requires:	btrfs-progs = %{version}-%{release}
 
 %description devel
 btrfs-progs-devel contains the libraries and header files needed to
@@ -39,6 +40,7 @@ btrfs filesystem-specific programs.
 %prep
 %setup -q
 %patch1 -p1
+%patch2 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
@@ -46,13 +48,16 @@ make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
 %install
 rm -rf $RPM_BUILD_ROOT
 make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir}/btrfs install DESTDIR=$RPM_BUILD_ROOT
+# Nuke the static lib
+rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%doc COPYING INSTALL
+%doc COPYING
+%{_libdir}/libbtrfs.so.0*
 %{_sbindir}/btrfsctl
 %{_sbindir}/btrfsck
 %{_sbindir}/mkfs.btrfs
@@ -76,10 +81,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %{_includedir}/*
-%{_libdir}/*
+%{_libdir}/libbtrfs.so
 
 %changelog
-* Fri May 01 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-1
+* Thu May 02 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-2
+- Fix subpackage brokenness
+
+* Wed May 01 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-1
 - New upstream snapshot
 - btrfs-progs-devel subpackage
 

@@ -1,28 +1,40 @@
-Name:           btrfs-progs
+Name:		btrfs-progs
 Version:	0.20.rc1.20130501git7854c8b
-Release:        1%{?dist}
-Summary:        Userspace programs for btrfs
+Release:	1%{?dist}
+Summary:	Userspace programs for btrfs
 
-Group:          System Environment/Base
-License:        GPLv2
-URL:            http://btrfs.wiki.kernel.org/index.php/Main_Page
+Group:		System Environment/Base
+License:	GPLv2
+URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:	%{name}-%{version}.tar.bz2
 
 # Valgrind patch no longer applied, but kept for posterity
 # Still must reverse-engineer fixes in there and get upstream
-Patch0: btrfs-progs-valgrind.patch
-Patch1: btrfs-init-dev-list.patch
+Patch0:		btrfs-progs-valgrind.patch
+Patch1:		btrfs-init-dev-list.patch
 
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires: e2fsprogs-devel, libuuid-devel, zlib-devel
-BuildRequires: libacl-devel, libblkid-devel, lzo-devel
+BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
+BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 
 %define _root_sbindir /sbin
 
 %description
 The btrfs-progs package provides all the userspace programs needed to create,
 check, modify and correct any inconsistencies in the btrfs filesystem.
+
+%package devel
+Summary:	Userspace programs for btrfs
+Group:		Development/Libraries
+Requires:	btrfs-progs-%{version}
+
+%description devel
+btrfs-progs-devel contains the libraries and header files needed to
+develop btrfs filesystem-specific programs.
+
+You should install btrfs-progs-devel if you want to develop
+btrfs filesystem-specific programs.
 
 %prep
 %setup -q
@@ -33,7 +45,7 @@ make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make mandir=%{_mandir} bindir=%{_sbindir} install DESTDIR=$RPM_BUILD_ROOT
+make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir}/btrfs install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -62,9 +74,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/mkfs.btrfs.8.gz
 %{_mandir}/man8/btrfs.8.gz
 
+%files devel
+%{_includedir}/*
+%{_libdir}/*
+
 %changelog
 * Fri May 01 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-1
 - New upstream snapshot
+- btrfs-progs-devel subpackage
 
 * Fri Mar 08 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130308git704a08c-1
 - New upstream snapshot

@@ -1,5 +1,5 @@
 Name:           btrfs-progs
-Version:        0.20.rc1.20130308git704a08c
+Version:	0.20.rc1.20130501git7854c8b
 Release:        1%{?dist}
 Summary:        Userspace programs for btrfs
 
@@ -15,12 +15,13 @@ Patch1: btrfs-init-dev-list.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  e2fsprogs-devel, libuuid-devel, zlib-devel, libacl-devel, libblkid-devel
+BuildRequires: e2fsprogs-devel, libuuid-devel, zlib-devel
+BuildRequires: libacl-devel, libblkid-devel, lzo-devel
 
 %define _root_sbindir /sbin
 
 %description
-The btrfs-progs package provides all the userpsace programs needed to create,
+The btrfs-progs package provides all the userspace programs needed to create,
 check, modify and correct any inconsistencies in the btrfs filesystem.
 
 %prep
@@ -62,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfs.8.gz
 
 %changelog
+* Fri May 01 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-1
+- New upstream snapshot
+
 * Fri Mar 08 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130308git704a08c-1
 - New upstream snapshot
 - btrfs-restore is now a command in the btrfs utility

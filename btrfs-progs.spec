@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	0.20.rc1.20130501git7854c8b
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -13,6 +13,10 @@ Source0:	%{name}-%{version}.tar.bz2
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
 Patch2:		btrfs-progs-Makefile.patch
+
+# Patch accepted upstream 2013-05-13:
+# http://permalink.gmane.org/gmane.comp.file-systems.btrfs/25681
+Patch3:         0001-libbtrfs-Set-SONAME-to-libbtrfs.so.0-instead-of-libb.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -41,6 +45,7 @@ btrfs filesystem-specific programs.
 %setup -q
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
@@ -84,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon May 13 2013 Richard W.M. Jones <rjones@redhat.com> 0.20.rc1.20130501git7854c8b-3
+- Add accepted upstream patch to fix SONAME libbtrfs.so -> libbtrfs.so.0
+
 * Thu May 02 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130501git7854c8b-2
 - Fix subpackage brokenness
 

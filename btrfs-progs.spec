@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	0.20.rc1.20130501git7854c8b
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -89,6 +89,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.20.rc1.20130501git7854c8b-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
+
 * Mon May 13 2013 Richard W.M. Jones <rjones@redhat.com> 0.20.rc1.20130501git7854c8b-3
 - Add accepted upstream patch to fix SONAME libbtrfs.so -> libbtrfs.so.0
 

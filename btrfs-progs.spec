@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	0.20.rc1.20130501git7854c8b
-Release:	4%{?dist}
+Version:	0.20.rc1.20130917git194aa4a
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -63,13 +63,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc COPYING
 %{_libdir}/libbtrfs.so.0*
-%{_sbindir}/btrfsctl
 %{_sbindir}/btrfsck
 %{_sbindir}/mkfs.btrfs
 %{_sbindir}/btrfs-debug-tree
 %{_sbindir}/btrfs-image
-%{_sbindir}/btrfs-show
-%{_sbindir}/btrfs-vol
 %{_sbindir}/btrfs-convert
 %{_sbindir}/btrfstune
 %{_sbindir}/btrfs
@@ -78,9 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-find-root
 %{_sbindir}/btrfs-show-super
 %{_mandir}/man8/btrfs-image.8.gz
-%{_mandir}/man8/btrfs-show.8.gz
 %{_mandir}/man8/btrfsck.8.gz
-%{_mandir}/man8/btrfsctl.8.gz
 %{_mandir}/man8/mkfs.btrfs.8.gz
 %{_mandir}/man8/btrfs.8.gz
 
@@ -89,6 +84,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Tue Sep 17 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130917git194aa4a-1
+- New upstream snapshot
+- Deprecated btrfsctl, btrfs-show, and btrfs-vol; still available in btrfs cmd
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.20.rc1.20130501git7854c8b-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 

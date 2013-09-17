@@ -9,19 +9,20 @@ Signed-off-by: Richard W.M. Jones <rjones@redhat.com>
  Makefile | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
+
+
 diff --git a/Makefile b/Makefile
-index 9c195b3..d2c2e28 100644
+index da7438e..0446836 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -93,7 +93,7 @@ version.h:
- 
+@@ -100,7 +100,7 @@ version.h:
  $(libs_shared): $(libbtrfs_objects) $(lib_links) send.h
  	@echo "    [LD]     $@"
--	$(Q)$(CC) $(CFLAGS) $(libbtrfs_objects) $(lib_LIBS) -shared -Wl,-soname,libbtrfs.so -o libbtrfs.so.0.1
-+	$(Q)$(CC) $(CFLAGS) $(libbtrfs_objects) $(lib_LIBS) -shared -Wl,-soname,libbtrfs.so.0 -o libbtrfs.so.0.1
+ 	$(Q)$(CC) $(CFLAGS) $(libbtrfs_objects) $(LDFLAGS) $(lib_LIBS) \
+-		-shared -Wl,-soname,libbtrfs.so -o libbtrfs.so.0.1
++		-shared -Wl,-soname,libbtrfs.so.0 -o libbtrfs.so.0.1
  
  $(libs_static): $(libbtrfs_objects)
  	@echo "    [AR]     $@"
--- 
-1.8.1.4
+
 

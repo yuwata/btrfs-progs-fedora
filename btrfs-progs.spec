@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	0.20.rc1.20130917git194aa4a
+Version:	0.20.rc1.20131114git9f0c53f
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -12,11 +12,6 @@ Source0:	%{name}-%{version}.tar.bz2
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
-Patch2:		btrfs-progs-Makefile.patch
-
-# Patch accepted upstream 2013-05-13:
-# http://permalink.gmane.org/gmane.comp.file-systems.btrfs/25681
-Patch3:         0001-libbtrfs-Set-SONAME-to-libbtrfs.so.0-instead-of-libb.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -44,8 +39,6 @@ btrfs filesystem-specific programs.
 %prep
 %setup -q
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
@@ -78,12 +71,22 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man8/btrfsck.8.gz
 %{_mandir}/man8/mkfs.btrfs.8.gz
 %{_mandir}/man8/btrfs.8.gz
+%{_mandir}/man8/btrfs-convert.8.gz
+%{_mandir}/man8/btrfs-debug-tree.8.gz
+%{_mandir}/man8/btrfs-find-root.8.gz
+%{_mandir}/man8/btrfs-map-logical.8.gz
+%{_mandir}/man8/btrfs-show-super.8.gz
+%{_mandir}/man8/btrfs-zero-log.8.gz
+%{_mandir}/man8/btrfstune.8.gz
 
 %files devel
 %{_includedir}/*
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Thu Nov 14 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20131114git9f0c53f-1
+- New upstream snapshot
+
 * Tue Sep 17 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20130917git194aa4a-1
 - New upstream snapshot
 - Deprecated btrfsctl, btrfs-show, and btrfs-vol; still available in btrfs cmd

@@ -1,12 +1,12 @@
 Name:		btrfs-progs
-Version:	0.20.rc1.20131114git9f0c53f
+Version:	3.12
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
 License:	GPLv2
 URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
-Source0:	%{name}-%{version}.tar.bz2
+Source0:	%{name}-v%{version}.tar.bz2
 
 # Valgrind patch no longer applied, but kept for posterity
 # Still must reverse-engineer fixes in there and get upstream
@@ -37,7 +37,7 @@ You should install btrfs-progs-devel if you want to develop
 btrfs filesystem-specific programs.
 
 %prep
-%setup -q
+%setup -q -n %{name}-v%{version}
 %patch1 -p1
 
 %build
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Nov 25 2013 Eric Sandeen <sandeen@redhat.com> 3.12-1
+- It's a new upstream release!
+
 * Thu Nov 14 2013 Eric Sandeen <sandeen@redhat.com> 0.20.rc1.20131114git9f0c53f-1
 - New upstream snapshot
 

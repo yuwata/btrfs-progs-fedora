@@ -1,12 +1,12 @@
 Name:		btrfs-progs
 Version:	3.12
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
 License:	GPLv2
 URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
-Source0:	%{name}-v%{version}.tar.bz2
+Source0:	https://www.kernel.org/pub/linux/kernel/people/mason/%{name}/%{name}-v%{version}.tar.xz
 
 # Valgrind patch no longer applied, but kept for posterity
 # Still must reverse-engineer fixes in there and get upstream
@@ -84,6 +84,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Jan 20 2014 Eric Sandeen <sandeen@redhat.com> 3.12-2
+- Add proper Source0 URL, switch to .xz
+
 * Mon Nov 25 2013 Eric Sandeen <sandeen@redhat.com> 3.12-1
 - It's a new upstream release!
 

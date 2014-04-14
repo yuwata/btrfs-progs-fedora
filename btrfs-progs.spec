@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	3.12
-Release:	2%{?dist}
+Version:	3.14
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -57,6 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING
 %{_libdir}/libbtrfs.so.0*
 %{_sbindir}/btrfsck
+%{_sbindir}/fsck.btrfs
 %{_sbindir}/mkfs.btrfs
 %{_sbindir}/btrfs-debug-tree
 %{_sbindir}/btrfs-image
@@ -69,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-show-super
 %{_mandir}/man8/btrfs-image.8.gz
 %{_mandir}/man8/btrfsck.8.gz
+%{_mandir}/man8/fsck.btrfs.8.gz
 %{_mandir}/man8/mkfs.btrfs.8.gz
 %{_mandir}/man8/btrfs.8.gz
 %{_mandir}/man8/btrfs-convert.8.gz

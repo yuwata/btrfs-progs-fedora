@@ -86,6 +86,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Wed Apr 16 2014 Eric Sandeen <sandeen@redhat.com> 3.14-1
+- New upstream release
+
 * Mon Jan 20 2014 Eric Sandeen <sandeen@redhat.com> 3.12-2
 - Add proper Source0 URL, switch to .xz
 

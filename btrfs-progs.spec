@@ -16,7 +16,8 @@ Patch1:		btrfs-init-dev-list.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
-BuildRequires:	libacl-devel, libblkid-devel, lzo-devel, asciidoc
+BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
+BuildRequires:	asciidoc, xmlto
 
 %define _root_sbindir /sbin
 

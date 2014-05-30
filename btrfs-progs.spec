@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	3.14.1
+Version:	3.14.2
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -16,7 +16,7 @@ Patch1:		btrfs-init-dev-list.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
-BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
+BuildRequires:	libacl-devel, libblkid-devel, lzo-devel, asciidoc
 
 %define _root_sbindir /sbin
 
@@ -68,24 +68,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-zero-log
 %{_sbindir}/btrfs-find-root
 %{_sbindir}/btrfs-show-super
-%{_mandir}/man8/btrfs-image.8.gz
-%{_mandir}/man8/btrfsck.8.gz
-%{_mandir}/man8/fsck.btrfs.8.gz
-%{_mandir}/man8/mkfs.btrfs.8.gz
-%{_mandir}/man8/btrfs.8.gz
-%{_mandir}/man8/btrfs-convert.8.gz
-%{_mandir}/man8/btrfs-debug-tree.8.gz
-%{_mandir}/man8/btrfs-find-root.8.gz
-%{_mandir}/man8/btrfs-map-logical.8.gz
-%{_mandir}/man8/btrfs-show-super.8.gz
-%{_mandir}/man8/btrfs-zero-log.8.gz
-%{_mandir}/man8/btrfstune.8.gz
+%{_mandir}/man8/*.gz
 
 %files devel
 %{_includedir}/*
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Fri May 30 2014 Eric Sandeen <sandeen@redhat.com> 3.14.2-1
+- New upstream release
+
 * Mon Apr 22 2014 Eric Sandeen <sandeen@redhat.com> 3.14.1-1
 - New upstream release
 

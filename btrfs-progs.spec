@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	3.14.2
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -12,6 +12,7 @@ Source0:	https://www.kernel.org/pub/linux/kernel/people/mason/%{name}/%{name}-v%
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
+Patch2:		btrfs-progs-3.14.2-mkfs-set-uuid.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -40,6 +41,7 @@ btrfs filesystem-specific programs.
 %prep
 %setup -q -n %{name}-v%{version}
 %patch1 -p1
+%patch2 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
@@ -76,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Jun 16 2014 Eric Sandeen <sandeen@redhat.com> 3.14.2-3
+- Support specification of UUID at mkfs time (#1094857)
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.14.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 

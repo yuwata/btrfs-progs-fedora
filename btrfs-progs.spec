@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	3.14.2
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -78,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Fri Aug 15 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.14.2-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
+
 * Mon Jun 16 2014 Eric Sandeen <sandeen@redhat.com> 3.14.2-3
 - Support specification of UUID at mkfs time (#1094857)
 

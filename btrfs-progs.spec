@@ -12,7 +12,6 @@ Source0:	https://www.kernel.org/pub/linux/kernel/people/mason/%{name}/%{name}-v%
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
-Patch2:		btrfs-progs-3.14.2-mkfs-set-uuid.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -41,7 +40,6 @@ btrfs filesystem-specific programs.
 %prep
 %setup -q -n %{name}-v%{version}
 %patch1 -p1
-%patch2 -p1
 
 %build
 make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}

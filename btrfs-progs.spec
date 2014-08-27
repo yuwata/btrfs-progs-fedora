@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	3.14.2
-Release:	4%{?dist}
+Version:	3.16
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-zero-log
 %{_sbindir}/btrfs-find-root
 %{_sbindir}/btrfs-show-super
+%{_mandir}/man5/*.gz
 %{_mandir}/man8/*.gz
 
 %files devel
@@ -78,6 +79,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Wed Aug 27 2014 Eric Sandeen <sandeen@redhat.com> 3.16-1
+- New upstream release
+
 * Fri Aug 15 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.14.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 

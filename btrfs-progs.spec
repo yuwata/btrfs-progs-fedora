@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	3.18.2
+Version:	3.19
 release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -15,6 +15,7 @@ Patch1:		btrfs-init-dev-list.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
+BuildRequires:	autoconf, automake
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
 BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 BuildRequires:	asciidoc, xmlto
@@ -42,7 +43,9 @@ btrfs filesystem-specific programs.
 %patch1 -p1
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing" %{?_smp_mflags}
+./autogen.sh
+%configure CFLAGS="$RPM_OPT_FLAGS -fno-strict-aliasing"
+make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -63,6 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-debug-tree
 %{_sbindir}/btrfs-image
 %{_sbindir}/btrfs-convert
+%{_sbindir}/btrfs-select-super
 %{_sbindir}/btrfstune
 %{_sbindir}/btrfs
 %{_sbindir}/btrfs-map-logical
@@ -77,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Wed Mar 11 2015 Eric Sandeen <sandeen@redhat.com> 3.19-1
+- New upstream release
+
 * Tue Jan 27 2015 Eric Sandeen <sandeen@redhat.com> 3.18.2-1
 - New upstream release
 
@@ -114,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 * Fri May 30 2014 Eric Sandeen <sandeen@redhat.com> 3.14.2-1
 - New upstream release
 
-* Mon Apr 22 2014 Eric Sandeen <sandeen@redhat.com> 3.14.1-1
+* Tue Apr 22 2014 Eric Sandeen <sandeen@redhat.com> 3.14.1-1
 - New upstream release
 
 * Wed Apr 16 2014 Eric Sandeen <sandeen@redhat.com> 3.14-1

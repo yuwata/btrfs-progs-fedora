@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.0.1
-release:	2%{?dist}
+Version:	4.1
+release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -8,7 +8,7 @@ License:	GPLv2
 URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%{version}.tar.xz
 
-# Valgrind patch no longer applied, but kept for posterity
+# Patches no longer applied, but kept for posterity
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
@@ -40,7 +40,6 @@ btrfs filesystem-specific programs.
 
 %prep
 %setup -q -n %{name}-v%{version}
-%patch1 -p1
 
 %build
 ./autogen.sh
@@ -81,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Jun 22 2015 Eric Sandeen <sandeen@redhat.com> 4.1-1
+- New upstream release
+
 * Wed Jun 17 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 4.0.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
 

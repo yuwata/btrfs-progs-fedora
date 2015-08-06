@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	4.1
+Version:	4.1.2
 release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -12,6 +12,8 @@ Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
+# Applied
+Patch2:		btrfs-mkfs-missing-exit.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -40,6 +42,8 @@ btrfs filesystem-specific programs.
 
 %prep
 %setup -q -n %{name}-v%{version}
+
+%patch2 -p1
 
 %build
 ./autogen.sh
@@ -80,6 +84,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Thu Aug 06 2015 Eric Sandeen <sandeen@redhat.com> 4.1.2-1
+- New upstream release
+- Fix to reject unknown mkfs options (#1246468)
+
 * Mon Jun 22 2015 Eric Sandeen <sandeen@redhat.com> 4.1-1
 - New upstream release
 

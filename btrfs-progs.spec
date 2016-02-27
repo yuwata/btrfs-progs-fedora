@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.4
-Release:	2%{?dist}
+Version:	4.4.1
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Fri Feb 26 2016 Eric Sandeen <sandeen@redhat.com> 4.4.1-1
+- New upstream release
+
 * Wed Feb 03 2016 Fedora Release Engineering <releng@fedoraproject.org> - 4.4-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 

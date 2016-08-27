@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	4.7
+Version:	4.7.1
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -81,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Sat Aug 27 2016 Eric Sandeen <sandeen@redhat.com> 4.7.1-1
+- New upstream release
+
 * Mon Aug 01 2016 Eric Sandeen <sandeen@redhat.com> 4.7-1
 - New upstream release
 

@@ -81,8 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
-* Wed Oct 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8-1
+* Wed Oct 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8.1-1
 - New upstream release
+
+* Wed Oct 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8-1
+- New upstream release (FTBFS on 32-bit)
 
 * Wed Sep 21 2016 Eric Sandeen <sandeen@redhat.com> 4.7.3-1
 - New upstream release

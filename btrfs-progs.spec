@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.8.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -12,6 +12,7 @@ Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%
 # Still must reverse-engineer fixes in there and get upstream
 Patch0:		btrfs-progs-valgrind.patch
 Patch1:		btrfs-init-dev-list.patch
+Patch2:		btrfs-ioctl-fix.patch
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
@@ -40,6 +41,7 @@ btrfs filesystem-specific programs.
 
 %prep
 %setup -q -n %{name}-v%{version}
+%patch2 -p1
 
 %build
 ./autogen.sh
@@ -81,6 +83,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Thu Oct 13 2016 Eric Sandeen <sandeen@redhat.com> 4.8.1-2
+- Fix build of apps including ioctl.h (bz#1384413)
+
 * Wed Oct 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8.1-1
 - New upstream release
 

@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.8.2
-Release:	2%{?dist}
+Version:	4.8.3
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -81,11 +81,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Sat Nov 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8.3-1
+- New upstream release
+
 * Fri Oct 28 2016 Eric Sandeen <sandeen@redhat.com> 4.8.2-2
 - Remove ioctl patch, different fix upstream
-
-* Thu Oct 27 2016 Eric Sandeen <sandeen@redhat.com> 4.8.2-1
-- New upstream release
 
 * Thu Oct 13 2016 Eric Sandeen <sandeen@redhat.com> 4.8.1-2
 - Fix build of apps including ioctl.h (bz#1384413)

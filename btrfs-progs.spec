@@ -71,7 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_sbindir}/btrfs-map-logical
 %{_sbindir}/btrfs-zero-log
 %{_sbindir}/btrfs-find-root
-%{_sbindir}/btrfs-show-super
 %{_mandir}/man5/*.gz
 %{_mandir}/man8/*.gz
 %{_udevrulesdir}/64-btrfs-dm.rules
@@ -83,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Fri Nov 25 2016 Eric Sandeen <sandeen@redhat.com> 4.8.4-1
 - New upstream release
+- btrfs-show-super removed (deprecated upstream)
 
 * Sat Nov 12 2016 Eric Sandeen <sandeen@redhat.com> 4.8.3-1
 - New upstream release

@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	4.8.4
+Version:	4.8.5
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -80,6 +80,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Wed Nov 30 2016 Eric Sandeen <sandeen@redhat.com> 4.8.5-1
+- New upstream release
+
 * Fri Nov 25 2016 Eric Sandeen <sandeen@redhat.com> 4.8.4-1
 - New upstream release
 - btrfs-show-super removed (deprecated upstream)

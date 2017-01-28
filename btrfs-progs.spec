@@ -75,7 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
-* Fri Jan 27 2016 Eric Sandeen <sandeen@redhat.com> 4.9.1-1
+* Fri Jan 27 2017 Eric Sandeen <sandeen@redhat.com> 4.9.1-1
 - New upstream release
 
 * Wed Jan 25 2017 Eric Sandeen <sandeen@redhat.com> 4.9-2

@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.11.1
-Release:	3%{?dist}
+Version:	4.12
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -76,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Jul 31 2017 Eric Sandeen <sandeen@redhat.com> 4.12-1
+- New upstream release
+
 * Mon Jul 31 2017 Igor Gnatenko <ignatenko@redhat.com> - 4.11.1-3
 - Add missing BuildRequires: systemd
 

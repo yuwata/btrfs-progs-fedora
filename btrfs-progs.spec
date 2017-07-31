@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.11.1
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -14,6 +14,7 @@ BuildRequires:	autoconf, automake
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
 BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 BuildRequires:	asciidoc, xmlto
+BuildRequires:  systemd
 
 %define _root_sbindir /sbin
 
@@ -75,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Jul 31 2017 Igor Gnatenko <ignatenko@redhat.com> - 4.11.1-3
+- Add missing BuildRequires: systemd
+
 * Wed Jul 26 2017 Fedora Release Engineering <releng@fedoraproject.org> - 4.11.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 

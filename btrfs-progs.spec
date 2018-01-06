@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	4.13.3
+Version:	4.14.1
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -11,7 +11,7 @@ Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	autoconf, automake
-BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel
+BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel, libzstd-devel
 BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 BuildRequires:	asciidoc, xmlto
 BuildRequires:  systemd
@@ -76,7 +76,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libbtrfs.so
 
 %changelog
-* Mon Oct 17 2017 Eric Sandeen <sandeen@redhat.com> 4.13.3-1
+* Fri Jan 05 2018 Eric Sandeen <sandeen@redhat.com> 4.14.1-1
+- New upstream release
+
+* Tue Oct 17 2017 Eric Sandeen <sandeen@redhat.com> 4.13.3-1
 - New upstream release
 
 * Fri Oct 06 2017 Eric Sandeen <sandeen@redhat.com> 4.13.2-1

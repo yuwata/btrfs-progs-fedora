@@ -8,7 +8,6 @@ License:	GPLv2
 URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%{version}.tar.xz
 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 BuildRequires:	autoconf, automake
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel, libzstd-devel

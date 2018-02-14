@@ -47,9 +47,6 @@ make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir
 # Nuke the static lib
 rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
 %defattr(-,root,root,-)
 %doc COPYING

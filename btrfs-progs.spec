@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.15.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -9,7 +9,7 @@ URL:		http://btrfs.wiki.kernel.org/index.php/Main_Page
 Source0:	https://www.kernel.org/pub/linux/kernel/people/kdave/%{name}/%{name}-v%{version}.tar.xz
 
 
-BuildRequires:	autoconf, automake
+BuildRequires:	gcc, autoconf, automake
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel, libzstd-devel
 BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 BuildRequires:	asciidoc, xmlto
@@ -72,6 +72,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfs.so
 
 %changelog
+* Mon Feb 26 2018 Eric Sandeen <sandeen@redhat.com> 4.15.1-2
+- BuildRequires: gcc
+
 * Fri Feb 16 2018 Eric Sandeen <sandeen@redhat.com> 4.15.1-1
 - New upstream release
 

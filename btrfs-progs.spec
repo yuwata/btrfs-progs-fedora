@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.15.1
-Release:	2%{?dist}
+Version:	4.16
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -13,7 +13,7 @@ BuildRequires:	gcc, autoconf, automake
 BuildRequires:	e2fsprogs-devel, libuuid-devel, zlib-devel, libzstd-devel
 BuildRequires:	libacl-devel, libblkid-devel, lzo-devel
 BuildRequires:	asciidoc, xmlto
-BuildRequires:  systemd
+BuildRequires:  systemd, python3-devel >= 3.4
 
 %define _root_sbindir /sbin
 
@@ -70,8 +70,15 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %files devel
 %{_includedir}/*
 %{_libdir}/libbtrfs.so
+%{_libdir}/libbtrfsutil.so
+%{_libdir}/libbtrfsutil.so
+%{_libdir}/libbtrfsutil.so.1
+%{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
+* Fri Apr 06 2018 Eric Sandeen <sandeen@redhat.com> 4.16.1-1
+- New upstream release
+
 * Mon Feb 26 2018 Eric Sandeen <sandeen@redhat.com> 4.15.1-2
 - BuildRequires: gcc
 

@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.16
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -43,7 +43,7 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir}/btrfs install DESTDIR=$RPM_BUILD_ROOT
+make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir} install DESTDIR=$RPM_BUILD_ROOT
 # Nuke the static lib
 rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 
@@ -76,7 +76,10 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
-* Fri Apr 06 2018 Eric Sandeen <sandeen@redhat.com> 4.16.1-1
+* Sun Apr 08 2018 Eric Sandeen <sandeen@redhat.com> 4.16-2
+- Fix up header install paths in devel package (#1564881)
+
+* Fri Apr 06 2018 Eric Sandeen <sandeen@redhat.com> 4.16-1
 - New upstream release
 
 * Mon Feb 26 2018 Eric Sandeen <sandeen@redhat.com> 4.15.1-2

@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.16
-Release:	2%{?dist}
+Release:	3%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -76,6 +76,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
+* Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 4.16-3
+- Rebuilt for Python 3.7
+
 * Sun Apr 08 2018 Eric Sandeen <sandeen@redhat.com> 4.16-2
 - Fix up header install paths in devel package (#1564881)
 

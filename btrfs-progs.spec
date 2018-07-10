@@ -48,7 +48,6 @@ make mandir=%{_mandir} bindir=%{_sbindir} libdir=%{_libdir} incdir=%{_includedir
 rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 
 %files
-%defattr(-,root,root,-)
 %doc COPYING
 %{_libdir}/libbtrfs.so.0*
 %{_sbindir}/btrfsck

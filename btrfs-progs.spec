@@ -1,6 +1,6 @@
 Name:		btrfs-progs
 Version:	4.16
-Release:	3%{?dist}
+Release:	4%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -75,6 +75,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
+* Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 4.16-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 4.16-3
 - Rebuilt for Python 3.7
 

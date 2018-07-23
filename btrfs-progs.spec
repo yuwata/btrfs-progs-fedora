@@ -1,6 +1,6 @@
 Name:		btrfs-progs
-Version:	4.16
-Release:	4%{?dist}
+Version:	4.17
+Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
 Group:		System Environment/Base
@@ -53,14 +53,12 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_sbindir}/btrfsck
 %{_sbindir}/fsck.btrfs
 %{_sbindir}/mkfs.btrfs
-%{_sbindir}/btrfs-debug-tree
 %{_sbindir}/btrfs-image
 %{_sbindir}/btrfs-convert
 %{_sbindir}/btrfs-select-super
 %{_sbindir}/btrfstune
 %{_sbindir}/btrfs
 %{_sbindir}/btrfs-map-logical
-%{_sbindir}/btrfs-zero-log
 %{_sbindir}/btrfs-find-root
 %{_mandir}/man5/*.gz
 %{_mandir}/man8/*.gz
@@ -75,6 +73,10 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
+* Mon Jul 23 2018 Eric Sandeen <sandeen@redhat.com> 4.17-1
+- New upstream release
+- Removes deprecated btrfs-debug-tree, btrfs-zero-log
+
 * Thu Jul 12 2018 Fedora Release Engineering <releng@fedoraproject.org> - 4.16-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 

@@ -1,5 +1,5 @@
 Name:		btrfs-progs
-Version:	4.17
+Version:	4.17.1
 Release:	1%{?dist}
 Summary:	Userspace programs for btrfs
 
@@ -73,6 +73,9 @@ rm -f $RPM_BUILD_ROOT/%{_libdir}/*.a
 %{_libdir}/libbtrfsutil.so.1.0.0
 
 %changelog
+* Mon Aug 06 2018 Eric Sandeen <sandeen@redhat.com> 4.17.1-1
+- New upstream release
+
 * Mon Jul 23 2018 Eric Sandeen <sandeen@redhat.com> 4.17-1
 - New upstream release
 - Removes deprecated btrfs-debug-tree, btrfs-zero-log
